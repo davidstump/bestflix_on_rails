@@ -1,20 +1,18 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
-
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
-
+gem 'rails'
+gem 'netflix'
+gem 'ruby_odata'
+gem 'haml'
+gem 'uglifier'
+gem 'coffee-rails'
+gem 'sass-rails'
 gem 'jquery-rails'
-gem 'flix4r'
 
 group :production do
-  gem 'pg'
+	gem 'pg'
 end
 
 group :development do
-  gem 'sqlite3'
+	gem 'sqlite3'
 end

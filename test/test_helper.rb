@@ -1,13 +1,51 @@
-ENV["RAILS_ENV"] = "test"
-require File.expand_path('../../config/environment', __FILE__)
-require 'rails/test_help'
+require 'test/unit'
+require 'rubygems'
+require 'active_support'
+require 'active_support/test_case'
+require 'action_controller'
+require 'action_controller/test_case'
+require 'oauth'
+require 'initializer'	#	rails/initializer
+require File.dirname(__FILE__) + '/../rails/init.rb' 
 
-class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
-  fixtures :all
+$: << File.expand_path(File.dirname(__FILE__) + "/../lib/app/controllers/" )
 
-  # Add more helper methods to be used by all tests here...
-end
+
+
+
+#	make all this go away
+#	the tests should be disconnected from any rails app
+
+
+
+
+
+ENV['RAILS_ENV'] = 'test' 
+ENV['RAILS_ROOT'] ||= File.dirname(__FILE__) + '/../../../..' 
+#require File.expand_path(
+#	File.join(ENV['RAILS_ROOT'], 'config/environment.rb')) 
+
+def load_schema 
+	config = YAML::load(IO.read(File.dirname(__FILE__) + '/database.yml'))  
+	ActiveRecord::Base.logger = Logger.new(File.dirname(__FILE__) + "/debug.log")  
+	db_adapter = ENV['DB'] 
+	# no db passed, try one of these fine config-free DBs before bombing.  
+	db_adapter ||= 
+		begin 
+			require 'rubygems'  
+			require 'sqlite'  
+			'sqlite'  
+		rescue MissingSourceFile 
+			begin 
+				require 'sqlite3'  
+				'sqlite3'  
+			rescue MissingSourceFile 
+			end  
+		end  
+	if db_adapter.nil? 
+		raise "No DB Adapter selected. Pass the DB= option to pick one, or install Sqlite or Sqlite3."  
+	end  
+	ActiveRecord::Base.establish_connection(config[db_adapter])  
+	load(File.dirname(__FILE__) + "/schema.rb")  
+	require File.dirname(__FILE__) + '/../rails/init.rb' 
+end 
