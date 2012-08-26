@@ -21,6 +21,7 @@ class FilmsController < ApplicationController
 		svc = OData::Service.new "http://odata.netflix.com/Catalog/"
 		FILMS.each do |film, nominated|
 			if nominated == year
+				film = film.gsub(/'/, '\'\'')
 				svc.Titles.filter("Name eq '#{film}'").top(1)
 				movies = svc.execute
 				movies.each_with_index do |movie,i|
