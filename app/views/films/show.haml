@@ -1,4 +1,4 @@
-%h1= "Nominees from #{@year}"
 %ul
 	- @films.each do |film|
-		%li= film
+		%li
+			%img{:alt => "#{film.Name}", :src => "#{film.BoxArt.LargeUrl}"}

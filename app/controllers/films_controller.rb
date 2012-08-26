@@ -24,7 +24,7 @@ class FilmsController < ApplicationController
 				svc.Titles.filter("Name eq '#{film}'").top(1)
 				movies = svc.execute
 				movies.each_with_index do |movie,i|
-				  films.push(movie.Name)
+				  films.push(movie)
 				end
 			end
 		end

@@ -1,11 +1,19 @@
 @Films = 
 
-  el: "#films"
+  el: "body"
 
   shouldInit: -> $(@el).length > 0
 
   init: ->
-    console.log("hi there") 
+    @bind()
+
+  bind: ->
+    $("#featured ul").roundabout
+      easing: "easeOutInCirc"
+      duration: 600
+
+    $("#pickyear").change ->
+      document.location = "/films/" + this.value
 
 $ -> 
   Films.init() if Films.shouldInit()
