@@ -124,9 +124,10 @@
           %option{:value => "1927"} 1927
           /end filter
 
-    /start films
-    = yield
-    /end films
+    #films
+      /start films
+      = yield
+      /end films
 
     .hr.grid_12.clearfix{:style => "margin-top: 15px;"}
 
