@@ -1,4 +1,5 @@
 %ul
 	- @films.each do |film|
 		%li
-			%img{:alt => "#{film.Name}", :src => "#{film.BoxArt.LargeUrl}"}
+			%a{:href => film.Url, :target => "_blank"}
+				%img{:alt => "#{film.Name}", :src => "#{film.BoxArt.LargeUrl}"}

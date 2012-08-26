@@ -12,7 +12,7 @@
       easing: "easeOutInCirc"
       duration: 600
 
-    $("#pickyear").change ->
+    $("#date_pickyear").change ->
       document.location = "/films/" + this.value
 
 $ -> 
