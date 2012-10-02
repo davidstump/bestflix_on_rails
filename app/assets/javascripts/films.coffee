@@ -15,5 +15,17 @@
     $("#date_pickyear").change ->
       document.location = "/films/" + this.value
 
+    for poster in $(".poster")
+      desc = $(poster).attr("data-details")
+      $(poster).qtip
+        content: 
+          text: desc
+          title: "About This Film"
+        position:
+          corner:
+            target: 'center'
+        style:
+          name: 'red'
+
 $ -> 
   Films.init() if Films.shouldInit()

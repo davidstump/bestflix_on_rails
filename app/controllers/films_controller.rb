@@ -2,7 +2,7 @@ class FilmsController < ApplicationController
 
 	def index
 		#default view showing most recent nominees
-		@films = get_films_by_year("2011")
+		@films = get_films_by_year(Time.now.year - 1)
 	end
 
 	def show
