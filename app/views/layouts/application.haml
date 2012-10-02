@@ -32,12 +32,13 @@
       .clear
       / end header
 
-      /start filter
-      %h2.grid_12.caption.clearfix
-        Best Picture Nominees From:
-        %form{:action => "", :method => "GET", :name => "pickyear", :style => "display: inline"}
-          = select_year(params[:id].to_i, :start_year => Time.now.year - 1, :end_year => 1927, :field_name => 'pickyear', :id => "pickyear", :default => 1998)
-          /end filter
+      - if @logged_in
+        /start filter
+        %h2.grid_12.caption.clearfix
+          Best Picture Nominees From:
+          %form{:action => "", :method => "GET", :name => "pickyear", :style => "display: inline"}
+            = select_year(params[:id].to_i, :start_year => Time.now.year - 1, :end_year => 1927, :field_name => 'pickyear', :id => "pickyear", :default => 1998)
+            /end filter
 
       #films
         /start films
