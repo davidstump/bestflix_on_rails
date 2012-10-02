@@ -23,7 +23,8 @@
           title: "About This Film"
         position:
           corner:
-            target: 'center'
+            target: 'bottomMiddle'
+            tooltip: 'topMiddle'
         style:
           name: 'red'
 
